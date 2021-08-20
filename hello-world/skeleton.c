@@ -1,9 +1,7 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include <cstdio>
 
 int main(int argc, char *argv[])
 {
     // TODO: say hello! in parallel
 
-    return 0;
 }

@@ -242,6 +242,11 @@ int MPI_File_write_at_all(MPI_File fh, MPI_Offset offset, void *buf, int count,
                           MPI_Datatype datatype, MPI_Status *status)
 ```
 
+# C interfaces for environmental inquiries
+
+```c
+int MPI_Get_processor_name(char *name, int *resultlen)
+```
 
 # Fortran interfaces {.section}
 
@@ -668,4 +673,11 @@ mpi_file_write_at_all(fh, offset, buf, count, datatype, status, ierror)
   type(mpi_file) :: fh
   type(mpi_datatype) :: datatype
   type(mpi_status) :: status
+```
+# Fortra interfaces for environmental inquiries
+
+```fortran
+mpi_get_processor_name(name, resultlen, ierror)
+  character(len=MPI_MAX_PROCESSOR_NAME) :: name
+  integer :: resultlen, ierror
 ```
