@@ -123,7 +123,7 @@ if (rank == 1) {
 ```
 - Fortran: use MPI module
 ```fortran
-use mpi ~~mpi_f08~~
+use mpi_f08
 ```
 (older Fortran codes might have `use mpi` or `include 'mpif.h'`)
 
