@@ -1,9 +1,9 @@
 program exchange
-  use mpi
+  use mpi_f08
   implicit none
-  integer, parameter :: msgsize = 100, arraysize = 1000
+  integer, parameter :: msgsize = 100, arraysize = 100000
   integer :: rc, myid, ntasks, count
-  integer :: status(MPI_STATUS_SIZE)
+  type(mpi_status) :: status
   integer :: message(arraysize)
   integer :: receiveBuffer(arraysize)
 
