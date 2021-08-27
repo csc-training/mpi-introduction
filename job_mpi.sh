@@ -1,8 +1,8 @@
 #!/bin/bash
 #SBATCH --job-name=example
-#SBATCH --account=<project>
+#SBATCH --account=project_2000745
 #SBATCH --partition=small
-#SBATCH --reservation=training
+#SBATCH --reservation=mpi_intro
 #SBATCH --time=00:05:00
 #SBATCH --ntasks=4
 
