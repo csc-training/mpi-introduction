@@ -11,7 +11,9 @@ Exercise material and model answers for the CSC course
 
  - [Hello world](hello-world/)
  - [Message exchange](message-exchange/)
+ - [Simple parallel pi](simple-pi/)
  - [Message chain](message-chain/)
+ - [Parallel pi](parallel-pi/)
  - [Collective operations](collectives/)
  - [Communicators and collectives](communicator)
  - [(Bonus) Heat equation solver](heat-equation/)
