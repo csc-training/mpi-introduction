@@ -118,7 +118,7 @@ if (0 == myid) {
 
 - When `source`, `tag`, and number of received elements are known,
   there is no need to examine `status`
-- A special constant `MPI_STATUS_IGNORE`can be used for the `status`
+- A special constant `MPI_STATUS_IGNORE` can be used for the `status`
   parameter
 - Saves memory in the user program and allows optimizations in the MPI library
 
