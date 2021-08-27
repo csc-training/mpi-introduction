@@ -8,8 +8,11 @@ program basic
   integer :: message(size)
   integer :: receiveBuffer(size)
   integer :: status(MPI_STATUS_SIZE)
+  integer :: requests(2)
 
   real(REAL64) :: t0, t1
+
+  integer :: source, destination
 
   call mpi_init(rc)
   call mpi_comm_rank(MPI_COMM_WORLD, myid, rc)
@@ -17,23 +20,29 @@ program basic
 
   message = myid
 
+  ! TODO: set source and destination ranks 
+  ! Treat boundaries with MPI_PROC_NULL
+
+     destination = 
+  
+     source = 
+
+  ! end TODO
+
   ! Start measuring the time spent in communication
   call mpi_barrier(mpi_comm_world, rc)
   t0 = mpi_wtime()
 
-  ! TODO: Send and receive as defined in the assignment
-  if ( myid < ntasks-1 ) then
+  ! TODO: Send messages
 
-     write(*,'(A10,I3,A20,I8,A,I3,A,I3)') 'Sender: ', myid, &
+  write(*,'(A10,I3,A20,I8,A,I3,A,I3)') 'Sender: ', myid, &
           ' Sent elements: ',size, &
-          '. Tag: ', myid+1, '. Receiver: ', myid+1
-  end if
+          '. Tag: ', myid+1, '. Receiver: ', destination
 
-  if ( myid > 0 ) then
+  ! TODO: Receive messages
 
-     write(*,'(A10,I3,A,I3)') 'Receiver: ', myid, &
+  write(*,'(A10,I3,A,I3)') 'Receiver: ', myid, &
           ' First element: ', receiveBuffer(1)
-  end if
 
   ! Finalize measuring the time and print it out
   t1 = mpi_wtime()

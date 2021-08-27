@@ -1,5 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include <cstdio>
+#include <vector>
 #include <mpi.h>
 
 void print_ordered(double t);
@@ -7,9 +7,9 @@ void print_ordered(double t);
 int main(int argc, char *argv[])
 {
     int i, myid, ntasks;
-    int size = 10000000;
-    int *message;
-    int *receiveBuffer;
+    constexpr int size = 10000000;
+    std::vector<int> message(size);
+    std::vector<int> receiveBuffer(size);
     MPI_Status status;
 
     double t0, t1;
@@ -20,15 +20,12 @@ int main(int argc, char *argv[])
     MPI_Comm_size(MPI_COMM_WORLD, &ntasks);
     MPI_Comm_rank(MPI_COMM_WORLD, &myid);
 
-    /* Allocate message buffers */
-    message = malloc(sizeof(int) * size);
-    receiveBuffer = malloc(sizeof(int) * size);
-    /* Initialize message */
+    // Initialize message
     for (i = 0; i < size; i++) {
         message[i] = myid;
     }
 
-    /* Set source and destination ranks */
+    // Set source and destination ranks 
     if (myid < ntasks - 1) {
         destination = myid + 1;
     } else {
@@ -40,31 +37,29 @@ int main(int argc, char *argv[])
         source = MPI_PROC_NULL;
     }
 
-    /* Start measuring the time spent in communication */
+    // Start measuring the time spent in communication
     MPI_Barrier(MPI_COMM_WORLD);
     t0 = MPI_Wtime();
 
-    /* Send messages */
-    MPI_Send(message, size, MPI_INT, destination, myid + 1,
+    // Send messages 
+    MPI_Send(message.data(), size, MPI_INT, destination, myid + 1,
              MPI_COMM_WORLD);
     printf("Sender: %d. Sent elements: %d. Tag: %d. Receiver: %d\n",
            myid, size, myid + 1, destination);
 
-    /* Receive messages */
-    MPI_Recv(receiveBuffer, size, MPI_INT, source, myid,
+    // Receive messages
+    MPI_Recv(receiveBuffer.data(), size, MPI_INT, source, myid,
              MPI_COMM_WORLD, &status);
     printf("Receiver: %d. first element %d.\n",
            myid, receiveBuffer[0]);
 
-    /* Finalize measuring the time and print it out */
+    // Finalize measuring the time and print it out
     t1 = MPI_Wtime();
     MPI_Barrier(MPI_COMM_WORLD);
     fflush(stdout);
 
     print_ordered(t1 - t0);
 
-    free(message);
-    free(receiveBuffer);
     MPI_Finalize();
     return 0;
 }
