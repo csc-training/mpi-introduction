@@ -14,6 +14,8 @@ Exercise material and model answers for the CSC course
  - [Simple parallel pi](simple-pi/)
  - [Message chain](message-chain/)
  - [Parallel pi](parallel-pi/)
+ - [Message chain with Sendrecv](message-chain-sendrecv/)
+ - [Broadcast and scatter](broadcast-scatter)
  - [Collective operations](collectives/)
  - [Communicators and collectives](communicator)
  - [(Bonus) Heat equation solver](heat-equation/)
