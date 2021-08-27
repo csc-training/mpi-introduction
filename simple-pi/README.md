@@ -12,7 +12,7 @@ $$
 where the answer becomes more accurate with increasing $N$. As each term is independent,
 the summation over $i$ can be parallelized nearly trivially.
 
-Starting from the serial code [pi.cpp](pi.cpp) (or [pi.F90}(pi.F90) for Fortran), make a version
+Starting from the serial code [pi.cpp](pi.cpp) (or [pi.F90](pi.F90) for Fortran), make a version
 that performs the calculation parallel with **two** processes.
 
 1. Divide the range over $N$ in two, so that rank 0 does $i=1,2,...\frac{N}{2}$ and rank 1 does
