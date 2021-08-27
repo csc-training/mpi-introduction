@@ -18,7 +18,7 @@ current task. Your program should work as follows:
    `MPI_PROC_NULL` when treating the special cases of
    the first and the last task so that no individual `MPI_Send`s or
    `MPI_Recv`s are needed. You may start from scratch or use the skeleton code
-   ([c/skeleton.c](c/skeleton.c) or [fortran/skeleton.F90](fortran/skeleton.F90)) 
+   ([cpp/skeleton.cpp](cpp/skeleton.cpp) or [fortran/skeleton.F90](fortran/skeleton.F90)) 
    as a starting point. 
 
 2. The skeleton code prints out the time spent in communication. 
