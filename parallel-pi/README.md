@@ -13,11 +13,11 @@ where the answer becomes more accurate with increasing $N$. As each term is inde
 the summation over $i$ can be parallelized nearly trivially.
 
 Starting from the serial code [pi.cpp](pi.cpp) (or [pi.F90}(pi.F90) for Fortran), make a version
-that performs the calculation in parallel with arbitrary number processes.
+that performs the calculation in parallel.
 
 1. Divide the range over $N$ in `ntasks`, so that rank 0 does $i=1,2,...\frac{N}{ntasks}$, rank 1 does
-   $i=\frac{N}{ntasks} + 1,\frac{N}{ntasks} + 2, ... $, *etc.* Note that if $N$ cannot be divided 
-  evenly by `ntasks`, some processes calculate more terms than others.
+   $i=\frac{N}{ntasks} + 1,\frac{N}{ntasks} + 2, ... $, *etc.*. You
+   may assume that $N$ is evenly divisible by the number of processes. 
 
 2. All tasks calculate their own partial sums
 
@@ -30,5 +30,9 @@ that performs the calculation in parallel with arbitrary number processes.
 5. Make a version where rank 0 receives the partial sums with `MPI_ANY_SOURCE`. When running 
   multiple times with the same number of processes, do you get always **exactly** the same result?
   If not, can you explain why?
+  
+6. (Bonus) Make a version that works with arbitrary number of processes. Now,
+  if $N$ cannot be divided evenly by `ntasks`, some processes
+  calculate more terms than others. 
 
 
