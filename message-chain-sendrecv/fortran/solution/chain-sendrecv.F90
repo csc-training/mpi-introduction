@@ -44,6 +44,8 @@ program basic
        ' Sent elements: ', size, &
        '. Tag: ', myid + 1, &
        '. Receiver: ', destination
+  write(*,'(A10,I3,A,I3)') 'Receiver: ', myid, &
+          ' First element: ', receiveBuffer(1)
 
   ! Finalize measuring the time and print it out
   t1 = mpi_wtime()
