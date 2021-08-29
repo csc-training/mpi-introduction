@@ -18,6 +18,6 @@ of an array of data using point-to-point operations.
    the *i*th section. Print out the final values in all the processes.
 
 
-You may start from scratch or use [skeleton.c](skeleton.cpp) (or
-[c/skeleton.F90](fortran/skeleton.F90) for Fortran) as a starting point.
+You may start from scratch or use [skeleton.c](c/skeleton.cpp) (or
+[skeleton.F90](fortran/skeleton.F90) for Fortran) as a starting point.
 
