@@ -19,5 +19,5 @@ of an array of data using point-to-point operations.
 
 
 You may start from scratch or use [skeleton.c](skeleton.cpp) (or
-[skeleton.F90](skeleton.F90) for Fortran) as a starting point.
+[c/skeleton.F90](fortran/skeleton.F90) for Fortran) as a starting point.
 
