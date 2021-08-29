@@ -20,7 +20,7 @@ program scatter
   call init_buffers
   recvbuf=-1
   call print_buffers(message)
-  call mpi_scatter(message, size/ntasks, MPI_INTEGER, recvbuf, size/ntasks, MPI_INTEGER, 0, MPI_COMM_WORLD, ierr)
+  
   call print_buffers(recvbuf) 
   call mpi_finalize(ierr)
 
