@@ -18,7 +18,6 @@ program bcast
   call print_buffers(message)
 
   ! Send message everywhere
-  call mpi_bcast(message, size, MPI_INTEGER, 0, MPI_COMM_WORLD, ierr)
 
   ! Print data that was received
   call print_buffers(message)
