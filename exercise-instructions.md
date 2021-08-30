@@ -89,9 +89,13 @@ In Puhti, programs need to be executed via the batch job system. Simple job runn
 
 srun my_mpi_exe
 ```
-Replace `<project>` with the project id provided together with your access credentials. Save the script *e.g.* as `job.sh` and submit it with `sbatch job.sh`. 
+
+Save the script *e.g.* as `job.sh` and submit it with `sbatch job.sh`. 
 The output of job will be in file `slurm-xxxxx.out`. You can check the status of your jobs with `squeue -u $USER` and kill possible hanging applications with
 `scancel JOBID`.
+
+The reservation `mpi_intro` is available during the course days and it
+is accessible only with the training user accounts.
 
 #### Running in local workstation
 
@@ -99,4 +103,37 @@ In most MPI implementations parallel program can be started with the `mpiexec` l
 ```
 mpiexec -n 4 ./my_mpi_exe
 ```
+
+### Debugging
+
+The Allinea DDT parallel debugger is available in Puhti. In order to
+use the debugger, build your code first with the `-g` flag. The DDT is
+then enabled via the module system:
+
+```bash
+module load ddt
+```
+
+The debugger is run in an interactive session, and for proper
+functioning the environment variable `SLURM_OVERLAP` needs to be set.
+
+1. Set `SLURM_OVERLAP` and request Slurm allocation interactively:
+```bash
+export SLURM_OVERLAP=1
+salloc --nodes=1 --ntasks-per-node=2 --account=project_2000745 --partition=small --reservation=mpi_intro
+```
+2. Start the application under debugger
+```bash
+ddt srun ./buggy
+```
+
+For smoother GUI performance, we recommend using [NoMachine remote
+desktop](https://docs.csc.fi/support/tutorials/nomachine-usage/) to
+connect to Puhti.
+
+### Performance analysis
+
+TODO
+
+
 
