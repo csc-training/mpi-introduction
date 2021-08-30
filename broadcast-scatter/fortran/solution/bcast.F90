@@ -18,6 +18,13 @@ program bcast
   call print_buffers(message)
 
   ! Send message everywhere
+  if(myid == 0) then
+     do i=0, ntasks-1
+       call mpi_send(message, size, MPI_INTEGER, i,i,MPI_COMM_WORLD, ierr)
+     enddo
+  else
+     call mpi_recv(message, size, MPI_INTEGER, 0, myid, MPI_COMM_WORLD, status,ierr)
+  endif
 
   ! Print data that was received
   call print_buffers(message)
