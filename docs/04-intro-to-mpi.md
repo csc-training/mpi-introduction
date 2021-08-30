@@ -197,9 +197,10 @@ MPI_Barrier(`comm`{.input})
 - List of MPI functions with detailed descriptions  
 <http://mpi.deino.net/mpi_functions/index.htm>
 - Good online MPI tutorials   
-<https://computing.llnl.gov/tutorials/mpi>  
-<http://mpitutorial.com/tutorials/>
-- MPI 3.1 standard <http://www.mpi-forum.org/docs/>
+    - <https://computing.llnl.gov/tutorials/mpi>  
+    - <http://mpitutorial.com/tutorials/>
+	- <https://www.youtube.com/watch?v=BPSgXQ9aUXY>
+- MPI 4.0 standard <http://www.mpi-forum.org/docs/>
 - MPI implementations   
 	* OpenMPI <http://www.open-mpi.org/>
-  * MPICH2 <http://www.mcs.anl.gov/research/projects/mpich2/>
+    * MPICH <https://www.mpich.org/>
