@@ -21,8 +21,8 @@ lang:   en
 	- Order of printouts from different processes is arbitrary
 - "Standard" debuggers
     - `gdb`: common command line debugger
-	- Debuggers within IDEs, e.g. VS Code
-	- No proper support for parallel debugging
+    - Debuggers within IDEs, e.g. VS Code
+    - No proper support for parallel debugging
 - Parallel debuggers
     - **Allinea DDT**, Totalview (commercial products)
 	
@@ -35,7 +35,10 @@ lang:   en
 - Investigating program stack
 - Parallel debuggers allow all of the above on per process/thread
   basis
-  
+
+# Web resources
+
+
 # Demo: using Allinea DDT {.section}
 
 # Using Allinea DDT
@@ -54,3 +57,4 @@ salloc --nodes=1 --ntasks-per-node=2 --account=project_xxx -p test
 ddt srun ./buggy
 ```
 - NoMachine remote desktop is recommended for smoother GUI performance
+
