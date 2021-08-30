@@ -515,50 +515,6 @@ Assume 4 MPI tasks. What will be the values of **aloc in the process #0?**
 `1, 2, 3, 4, 1, 2, 3, 4`
 </div>
 
-# Non-blocking collectives
-
-- Non-blocking collectives (“``I``-collectives”) enable the overlapping of communication and computation together with the benefits of collective communication.
-
-- Same syntax as for blocking collectives, besides 
-    - “``I``” at the front of the name (`MPI_Alltoall` -> `MPI_Ialltoall`)
-    - Request parameter at the end of the list of arguments
-    - Completion needs to be waited
-
-# Non-blocking collectives
-
-- Restrictions
-    - Have to be called in same order by all ranks in a communicator
-    - Mixing of blocking and non-blocking collectives is not allowed
-
-# Non-blocking collectives
-
-![](img/non_blocking_large.svg){.center width=100%}
-
-![](img/blue_arrow.svg){width=1%} (Computation) work 1  
-![](img/green_arrow.svg){width=1%} (Computation) work 2, not
-involving data in the ``Allreduce`` operation
-
-# Example: Non-blocking broadcasting {.split-definition}
- 
-MPI_Ibcast(`buf`{.input}`fer`{.output}, `count`{.input}, `datatype`{.input}, `root`{.input}, `comm`{.input}, `request`{.output})
-  : `buf`{.input}`fer`{.output} 
-    : data to be distributed
-  
-    `count`{.input}
-    : number of entries in buffer
-
-    `datatype`{.input}
-    : data type of buffer
-
-    `root`{.input}
-    : rank of broadcast root
-
-    `comm`{.input}
-    : communicator
-
-    `request`{.output}
-    : a handle that is used when checking if the operation has finished
-
 
 # Common mistakes with collectives
 
