@@ -27,7 +27,8 @@ int main(int argc, char *argv[])
 
     /* Send  everywhere */
     
-    /* Implement the scatter of the array sendbuf from the process 0 to the rest */
+    // Implement the scatter of the array sendbuf from the process 0 to the rest,
+    // using send and recv functions
     
     /* Print data that was received */
     print_buffers(printbuf, sendbuf, size);
