@@ -6,21 +6,34 @@ program scatter
   integer :: ntasks, myid, ierr, i, color, sub_comm
   integer, dimension(size) :: message, recvbuf
   integer, dimension(size**2) :: printbuf
+  integer, allocatable :: tmp
 
   call mpi_init(ierr)
   call mpi_comm_size(MPI_COMM_WORLD, ntasks, ierr)
   call mpi_comm_rank(MPI_COMM_WORLD, myid, ierr)
 
+  call init_buffers
+  recvbuf=-1
+  call print_buffers(message)
+  allocate(tmp(size/ntasks))
+  
   if (size<ntasks) then
      if (myid == 0) then
         print *, "Size is too small. Increase size or decrease number of tasks to have at least one element sent"
      end if
      call mpi_abort(MPI_COMM_WORLD, -1, ierr)
   end if
-  call init_buffers
-  recvbuf=-1
-  call print_buffers(message)
-  
+  if(myid == 0) then
+  tmp(1:(size/ntasks))=message(1:(size/ntasks))
+  do i=1, ntasks-1
+  tmp(1:3)=message(i*(size/ntasks)+1:(i+1)*(size/ntasks))
+  call mpi_send(tmp, size, MPI_INTEGER, i,i,MPI_COMM_WORLD, ierr)
+  enddo
+  else
+  call mpi_recv(tmp, size, MPI_INTEGER, 0, myid, MPI_COMM_WORLD, status,ierr)
+  recvbuf(1:(size/ntasks))=tmp(1:(size/ntasks))
+  endif
+
   call print_buffers(recvbuf) 
   call mpi_finalize(ierr)
 
