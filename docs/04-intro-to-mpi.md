@@ -106,7 +106,9 @@ if (rank == 1) {
 
 # Programming MPI
 
-- The MPI standard defines interfaces to C and Fortran programming languages
+- The MPI standard defines interfaces to C and Fortran programming
+  languages
+    - No C++ bindings in the standard, C++ programs use the C interface
 	- There are unofficial bindings to eg. Python, Perl and Java
 - C call convention (*case sensitive*)<br>
 `rc = MPI_Xxxx(parameter,...)`
