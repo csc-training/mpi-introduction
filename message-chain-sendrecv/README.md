@@ -24,5 +24,5 @@ current task. Your program should work as follows:
 2. The skeleton code prints out the time spent in communication. 
    Investigate the timings with different numbers of MPI tasks 
    (e.g. 2, 4, 8, 16, ...). Compare the results to the implementation with
-   [individual `MPI_Send`s and `MPI_Recv`'s](../message-chain/) and pay attention 
+   [individual `MPI_Send`'s and `MPI_Recv`'s](../message-chain/) and pay attention 
    especially to rank 0. Can you explain the behaviour?
