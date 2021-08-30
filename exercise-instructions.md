@@ -106,8 +106,8 @@ mpiexec -n 4 ./my_mpi_exe
 
 ### Debugging
 
-The Allinea DDT parallel debugger is available in Puhti. In order to
-use the debugger, build your code first with the `-g` flag. The DDT is
+The [Allinea DDT parallel debugger](https://docs.csc.fi/apps/ddt/) is available in CSC 
+supercomputers. In order to use the debugger, build your code first with the `-g` flag. The DDT is
 then enabled via the module system:
 
 ```bash
