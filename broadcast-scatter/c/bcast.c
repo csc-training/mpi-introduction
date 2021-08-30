@@ -26,7 +26,17 @@ int main(int argc, char *argv[])
     print_buffers(printbuf, sendbuf, size);
 
     /* Send  everywhere */
-    MPI_Bcast(sendbuf, size, MPI_INT, 0, MPI_COMM_WORLD);
+    
+    /* Send  everywhere */
+    if( myid ==0){
+      for(int i=1; i<ntasks; i++){
+          MPI_Send(sendbuf, size, MPI_INT, i, i, MPI_COMM_WORLD);
+          }
+     }
+     else
+     {
+       MPI_Recv(sendbuf, size, MPI_INT, 0, myid, MPI_COMM_WORLD, &status);
+     }
 
     /* Print data that was received */
     print_buffers(printbuf, sendbuf, size);
