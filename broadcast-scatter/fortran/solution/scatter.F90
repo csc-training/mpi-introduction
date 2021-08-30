@@ -15,7 +15,6 @@ program scatter
   call init_buffers
   recvbuf=-1
   call print_buffers(message)
-  allocate(tmp(size/ntasks))
   
   if (size<ntasks) then
      if (myid == 0) then
@@ -23,14 +22,16 @@ program scatter
      end if
      call mpi_abort(MPI_COMM_WORLD, -1, ierr)
   end if
+
+  allocate(tmp(size/ntasks))
   if(myid == 0) then
-  tmp(1:(size/ntasks))=message(1:(size/ntasks))
+  recvbuf(1:(size/ntasks))=message(1:(size/ntasks))
   do i=1, ntasks-1
-  tmp(1:3)=message(i*(size/ntasks)+1:(i+1)*(size/ntasks))
-  call mpi_send(tmp, size, MPI_INTEGER, i,i,MPI_COMM_WORLD, ierr)
+     tmp(1:(size/ntasks))=message(i*(size/ntasks)+1:(i+1)*(size/ntasks))
+     call mpi_send(tmp, size/ntasks, MPI_INTEGER, i,i,MPI_COMM_WORLD, ierr)
   enddo
   else
-  call mpi_recv(tmp, size, MPI_INTEGER, 0, myid, MPI_COMM_WORLD, status,ierr)
+  call mpi_recv(tmp, size/ntasks, MPI_INTEGER, 0, myid, MPI_COMM_WORLD, status,ierr)
   recvbuf(1:(size/ntasks))=tmp(1:(size/ntasks))
   endif
 
