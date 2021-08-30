@@ -17,6 +17,6 @@ Exercise material and model answers for the CSC course
  - [Message chain with Sendrecv](message-chain-sendrecv/)
  - [Broadcast and scatter](broadcast-scatter)
  - [Collective operations](collectives/)
- - [Non-blocking communication](message-chain-non-blocking/)
+ - [Non-blocking communication](non-blocking/)
  - [(Bonus) Heat equation solver](heat-equation/)
 
