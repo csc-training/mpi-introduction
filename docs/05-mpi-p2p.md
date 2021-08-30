@@ -205,6 +205,18 @@ MPI_Recv(`buffer`{.output}, `count`{.input}, `datatype`{.input}, `source`{.input
     `-`{.ghost}
     : `-`{.ghost}
 
+# "Buffers" in MPI
+
+- The "buffer" arguments are memory addresses
+- MPI assumes contiguous chunk of memory
+    - `count` elements are send starting from the address
+	- received elements are stored starting from the address
+- In Fortran, arguments are passed by reference, *i.e.* variables can be
+  passed as such
+    - Note: be careful if passing non-contiguous array segmens such as `a(1, 1:N)`
+- In C/C++ "buffer" is pointer
+    - `data()` method of C++ `<array>` and `<vector>` containers can be used
+   
 # MPI datatypes
 
 - On low level, MPI sends and receives stream of bytes
@@ -232,7 +244,7 @@ MPI_Recv(`buffer`{.output}, `count`{.input}, `datatype`{.input}, `source`{.input
     - For example, all processes are in `MPI_Recv`
     - If deadlocked, the program is stuck forever
 
-             |
+
 # Status parameter 
 
 - The status parameter in `MPI_Recv` contains information about the
