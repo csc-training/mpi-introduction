@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <mpi.h>
-
+#include <cstdio>
+#include <vector>
 
 void print_buffers(int *printbuffer, int *sendbuffer, int buffersize);
 void init_buffers(int *sendbuffer, int *recvbuffer, int buffersize);
@@ -10,20 +11,21 @@ void init_buffers(int *sendbuffer, int *recvbuffer, int buffersize);
 int main(int argc, char *argv[])
 {
     int ntasks, myid, color,size=12;
-    int sendbuf[ size], recvbuf[size];
-    int printbuf[size * size];
-
+    std::vector<int> sendbuf(size);
+    std::vector<int> recvbuf(size);
+    std::vector<int> printbuf(size*size);
     MPI_Status status;
+
     MPI_Init(&argc, &argv);
     MPI_Comm_size(MPI_COMM_WORLD, &ntasks);
     MPI_Comm_rank(MPI_COMM_WORLD, &myid);
-   
+
 
     /* Initialize message buffers */
-    init_buffers(sendbuf, recvbuf, size);
+    init_buffers(sendbuf.data(), recvbuf.data(), size);
 
     /* Print data that will be sent */
-    print_buffers(printbuf, sendbuf, size);
+    print_buffers(printbuf.data(), sendbuf.data(), size);
 
     /* Send  everywhere */
     if (ntasks > size) {
@@ -32,26 +34,29 @@ int main(int argc, char *argv[])
         }
         MPI_Abort(MPI_COMM_WORLD, -1);
     }
-    int tmp[size/ntasks];
+    std::vector<int> tmp(size/ntasks);
     if( myid ==0){
-      for(int i=1; i<ntasks; i++){
+      for(int i=0; i<ntasks; i++){
           for (int j=0; j<size/ntasks; j++)
           {
              tmp[j]=i*(size/ntasks)+j;
+             if(i==0){
+             recvbuf[j]=tmp[j];
+           }
           }
-          MPI_Send(tmp, size/ntasks, MPI_INT, i, i, MPI_COMM_WORLD);
+          MPI_Send(tmp.data(), size/ntasks, MPI_INT, i, i, MPI_COMM_WORLD);
           }
      }
      else
      {
-       MPI_Recv(tmp, size/ntasks, MPI_INT, 0, myid, MPI_COMM_WORLD, &status);
+       MPI_Recv(tmp.data(), size/ntasks, MPI_INT, 0, myid, MPI_COMM_WORLD, &status);
        for (int j=0;j<size/ntasks;j++)
        {
-          sendbuf[j]=tmp[j];
+          recvbuf[j]=tmp[j];
        }
-
+     }
     /* Print data that was received */
-    print_buffers(printbuf, sendbuf, size);
+    print_buffers(printbuf.data(), recvbuf.data(), size);
 
     MPI_Finalize();
     return 0;
@@ -96,6 +101,6 @@ void print_buffers(int *printbuffer, int *sendbuffer, int buffersize)
                 printf(" %2i", printbuffer[i + buffersize * j]);
             }
             printf("\n");
-
+         }
     }
 }
