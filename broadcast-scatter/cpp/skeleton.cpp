@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
     // using send and recv functions
     
     /* Print data that was received */
-    print_buffers(printbuf.data(), sendbuf.data(), size);
+    print_buffers(printbuf.data(), ..., size);
 
     MPI_Finalize();
     return 0;
