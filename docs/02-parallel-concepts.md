@@ -1,7 +1,7 @@
 ---
 title: Parallel computing concepts
 author: CSC Training
-date:   2020
+date:   2021
 lang:   en
 ---
 
