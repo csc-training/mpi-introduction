@@ -171,8 +171,8 @@ MPI_Send(`buffer`{.input}, `count`{.input}, `datatype`{.input}, `dest`{.input}, 
     : Error value; in C/C++ it’s the return value of the function, and
       in Fortran an additional output parameter
 
-    `-`{.ghost}
-    : `-`{.ghost}
+<!--    `-`{.ghost}
+    : `-`{.ghost} -->
 
 # Receive operation {.split-definition}
 
@@ -202,8 +202,8 @@ MPI_Recv(`buffer`{.output}, `count`{.input}, `datatype`{.input}, `source`{.input
     `error`{.output}
     : As for send operation
 
-    `-`{.ghost}
-    : `-`{.ghost}
+<!--    `-`{.ghost}
+    : `-`{.ghost} -->
 
 # "Buffers" in MPI
 

@@ -69,12 +69,19 @@ printf("Elapsed time %f\n", t1 - t0);
 - Problems often caused by load imbalance or by badly designed communication 
   pattern 
 
+# Web resources
+
+- <https://pop-coe.eu/further-information/learning-material>
+- <http://www.prace-ri.eu/best-practice-guides/>
+
 
 # Common communication patterns {.section}
 
 # Main - worker 
 
 ![](img/comm_patt1.svg){.center width=100%}
+
+<br>
 
 - Each process is only sending or receiving at the time
 

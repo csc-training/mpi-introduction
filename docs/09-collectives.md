@@ -276,9 +276,6 @@ MPI_Gatherv(`sendbuf`{.input}, `sendcount`{.input}, `sendtype`{.input}, `recvbuf
     `sendtype`{.input} 
     : data type of send buffer elements
     
-    `-`{.ghost}
-    : `-`{.ghost}
-    
     `recvbuf`{.output} 	
     : receive buffer
 
@@ -290,6 +287,9 @@ MPI_Gatherv(`sendbuf`{.input}, `sendcount`{.input}, `sendtype`{.input}, `recvbuf
     : array (of length ntasks). Entry _i_ specifies the displacement
       (relative to recvbuf)
 
+    `-`{.ghost}
+    : `-`{.ghost}
+
     `recvtype`{.input}
  	: data type of receive buffer elements
 
@@ -299,8 +299,6 @@ MPI_Gatherv(`sendbuf`{.input}, `sendcount`{.input}, `sendtype`{.input}, `recvbuf
     `comm`{.input}
     : communicator
     
-    `-`{.ghost}
-    : `-`{.ghost}
 
 # Reduce operation
 

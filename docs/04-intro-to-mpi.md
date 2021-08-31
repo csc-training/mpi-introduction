@@ -133,6 +133,22 @@ use mpi_f08
 - Write the program
 - Call **MPI_Finalize** before exiting from the main program
 
+# Compiling an MPI program
+
+- MPI is a library (+ runtime system)
+- In principle, MPI programs can be build with standard compilers
+  (*i.e.* `gcc` / `g++` / `gfortran`) with the appropriate `-I` / `-L` / `-l`
+  options
+- Most MPI implementations provide convenience wrappers, typically
+  `mpicc` / `mpicxx` / `mpif90`, for easier building
+    - no need for MPI related options
+  
+```bash
+mpicc -o my_mpi_prog my_mpi_code.c
+mpicxx -o my_mpi_prog my_mpi_code.cpp
+mpif90 -o my_mpi_prog my_mpi_code.F90
+```
+
 # Presenting syntax
 
 - MPI calls are presented as pseudocode
@@ -144,12 +160,10 @@ MPI_Function(`arg1`{.input}, `arg2`{.output})
     : input arguments in red
   : `arg2`{.output}
     : output arguments in blue. Note that in C the output arguments are always
-      pointers to a variable
+      pointers
 
 
-# First five MPI commands
-
-- Initialization and finalization
+# First five MPI commands: Initialization and finalization
 
 MPI_Init
   : (in C `argc`{.input} and `argv`{.input} pointer arguments are needed)
@@ -157,9 +171,7 @@ MPI_Init
 MPI_Finalize
   : 
 
-# First five MPI commands
-
-- Information about the communicator
+# First five MPI commands: Information about the communicator
 
 MPI_Comm_size(`comm`{.input}, `size`{.output})
   : `comm`{.input}
@@ -173,10 +185,9 @@ MPI_Comm_rank(`comm`{.input}, `rank`{.output})
   : `rank`{.output}
     : rank of this process
 
-# First five MPI commands
+# First five MPI commands: Synchronization
 
-- Synchronization between processes
-    - wait until everybody within the communicator reaches the call 
+- Wait until everybody within the communicator reaches the call 
 
 MPI_Barrier(`comm`{.input})
   : `comm`{.input}

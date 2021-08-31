@@ -17,7 +17,7 @@ lang:   en
 
 - Print statements in the code
     - Typically cumbersome, especially with compiled languages
-	- Might result lots of clutter in parallel programs
+	- Might result in lots of clutter in parallel programs
 	- Order of printouts from different processes is arbitrary
 - "Standard" debuggers
     - `gdb`: common command line debugger
@@ -53,7 +53,7 @@ lang:   en
 ```bash
 module load ddt
 export SLURM_OVERLAP=1
-salloc --nodes=1 --ntasks-per-node=2 --account=project_xxx -p test
+salloc --nodes=1 --ntasks-per-node=2 --account=project_xxx -p small
 ddt srun ./buggy
 ```
 - NoMachine remote desktop is recommended for smoother GUI performance
