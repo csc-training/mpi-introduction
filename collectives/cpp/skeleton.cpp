@@ -1,5 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include <cstdio>
+#include <vector>
 #include <mpi.h>
 
 #define NTASKS 4
@@ -11,8 +11,8 @@ void init_buffers(int *sendbuffer, int *recvbuffer, int buffersize);
 int main(int argc, char *argv[])
 {
     int ntasks, rank, color;
-    int sendbuf[2 * NTASKS], recvbuf[2 * NTASKS];
-    int printbuf[2 * NTASKS * NTASKS];
+    std::vector<int> sendbuf(2 * NTASKS), recvbuf(2 * NTASKS);
+    std::vector<int> printbuf(2 * NTASKS * NTASKS);
 
     MPI_Comm sub_comm;
 
@@ -28,17 +28,17 @@ int main(int argc, char *argv[])
     }
 
     /* Initialize message buffers */
-    init_buffers(sendbuf, recvbuf, 2 * NTASKS);
+    init_buffers(sendbuf.data(), recvbuf.data(), 2 * NTASKS);
 
     /* Print data that will be sent */
-    print_buffers(printbuf, sendbuf, 2 * NTASKS);
+    print_buffers(printbuf.data(), sendbuf.data(), 2 * NTASKS);
 
     /* TODO: use a single collective communication call (and maybe prepare
      *       some parameters for the call) */
 
     /* Print data that was received */
     /* TODO: add correct buffer */
-    print_buffers(printbuf, ..., 2 * NTASKS);
+    print_buffers(printbuf.data(), ..., 2 * NTASKS);
 
     MPI_Finalize();
     return 0;
