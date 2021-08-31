@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <cstdio>
+#include <vector>
 #include <mpi.h>
-
 
 void print_buffers(int *printbuffer, int *sendbuffer, int buffersize);
 void init_buffers(int *sendbuffer, int *recvbuffer, int buffersize);
@@ -10,9 +11,9 @@ void init_buffers(int *sendbuffer, int *recvbuffer, int buffersize);
 int main(int argc, char *argv[])
 {
     int ntasks, myid, color,size=12;
-    int sendbuf[ size], recvbuf[size];
-    int printbuf[size * size];
-
+    std::vector<int> sendbuf(size);
+    std::vector<int> recvbuf(size);
+    std::vector<int> printbuf(size*size);
     MPI_Status status;
     MPI_Init(&argc, &argv);
     MPI_Comm_size(MPI_COMM_WORLD, &ntasks);
@@ -20,10 +21,10 @@ int main(int argc, char *argv[])
    
    
     /* Initialize message buffers */
-    init_buffers(sendbuf, recvbuf, size);
+    init_buffers(sendbuf.data(), recvbuf(), size);
 
     /* Print data that will be sent */
-    print_buffers(printbuf, sendbuf, size);
+    print_buffers(printbuf.data(), sendbuf.data(), size);
 
     /* Send  everywhere */
     
@@ -31,7 +32,7 @@ int main(int argc, char *argv[])
     // using send and recv functions
     
     /* Print data that was received */
-    print_buffers(printbuf, sendbuf, size);
+    print_buffers(printbuf.data(), sendbuf.data(), size);
 
     MPI_Finalize();
     return 0;
