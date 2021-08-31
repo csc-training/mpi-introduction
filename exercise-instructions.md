@@ -131,9 +131,80 @@ For smoother GUI performance, we recommend using [NoMachine remote
 desktop](https://docs.csc.fi/support/tutorials/nomachine-usage/) to
 connect to Puhti.
 
-### Performance analysis
+### Performance analysis with ScoreP / Scalasca
 
-TODO
+Start by loading `scorep` and `scalasca` modules:
+
+```bash
+module load scorep scalasca
+```
+
+Instrument the application by prepeding compile command with `scorep`:
+
+```bash
+scorep mpicc -o my_mpi_app my_mpi_code.c
+```
+
+Collect and create flat profile by prepending `srun` with `scan`:
+```
+...
+#SBATCH --ntasks=8
+
+module load scalasca
+scan srun ./my_mpi_app
+```
+
+Scalasca analysis report explorer `square` does not work currently in
+the CSC supercomputers, but the experiment directory can be copied to
+local workstation for visual analysis:
+
+(On local workstation)
+```bash
+rsync -r puhti.csc.fi:/path_to_rundir/scorep_my_mpi_app_8_sum .
+```
+
+The `scorep-score` command can be used also in the supercomputers to
+estimate storage requirements before starting tracing:
+
+```bash
+scorep-score scorep_my_mpi_app_8_sum/profile.cubex
+```
+
+In order to collect and analyze the trace, add `-q` and `-t` options
+to `scan`:
+
+```bash
+...
+#SBATCH --ntasks=8
+
+module load scalasca
+scan -q -t srun ./my_mpi_app
+```
+
+The experiment directory containing the trace can now be copied to
+local workstation for visual analysis:
+
+```bash
+rsync -r puhti.csc.fi:/path_to_rundir/scorep_my_mpi_app_8_trace .
+```
+
+On CSC supercomputers, one can use Intel Traceanalyzer for
+investigating the trace (Traceanalyzer can read the `.otf2` produced
+by ScoreP / Scalasca):
+
+```bash
+module load intel-itac
+traceanalyzer &
+```
+
+Next, choose the "Open" dialog and select the `trace.otf2` file within
+the experiment directory (e.g. `scorep_my_mpi_app_8_trace`). For smoother GUI
+performance, we recommend using [NoMachine remote desktop](https://docs.csc.fi/support/tutorials/nomachine-usage/) 
+to connect to Puhti.
+
+
+
+
 
 
 
