@@ -167,7 +167,7 @@ The `scorep-score` command can be used also in the supercomputers to
 estimate storage requirements before starting tracing:
 
 ```bash
-scorep-score scorep_my_mpi_app_8_sum/profile.cubex
+scorep-score -r scorep_my_mpi_app_8_sum/profile.cubex
 ```
 
 In order to collect and analyze the trace, add `-q` and `-t` options
