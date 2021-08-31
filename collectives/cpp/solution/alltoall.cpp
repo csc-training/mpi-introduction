@@ -33,9 +33,8 @@ int main(int argc, char *argv[])
     /* Print data that will be sent */
     print_buffers(printbuf.data(), sendbuf.data(), 2 * NTASKS);
 
-    /* Scatter the elements from task 0 */
-    MPI_Scatter(sendbuf.data(), 2, MPI_INT, recvbuf.data(), 2, MPI_INT, 0,
-                MPI_COMM_WORLD);
+    /* Perform the all-to-all communication pattern */
+    MPI_Alltoall(sendbuf.data(), 2, MPI_INT, recvbuf.data(), 2, MPI_INT, MPI_COMM_WORLD);
 
     /* Print data that was received */
     print_buffers(printbuf.data(), recvbuf.data(), 2 * NTASKS);
