@@ -37,7 +37,11 @@ lang:   en
   basis
 
 # Web resources
-
+- https://valgrind.org/docs/manual/mc-manual.html (Valgrind docs)
+- https://software.intel.com/content/www/us/en/develop/documentation/mpi-developer-guide-linux/top/debugging-applications/debugging.html (Intel guides for debugging)
+- https://www.open-mpi.org/faq/?category=debugging (OPEN-MPI FAQ)
+- https://www.mpich.org/static/docs/v3.3/www3/MPI_Comm_set_errhandler.html (MPICH documentation)
+- https://materials.prace-ri.eu/view/divisions/  (PRACE training portal)
 
 # Demo: using Allinea DDT {.section}
 
