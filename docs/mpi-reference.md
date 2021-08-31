@@ -1,7 +1,7 @@
 ---
 title:  MPI reference
 author: CSC Training
-date:   2019
+date:   2021
 lang:   en
 ---
 
