@@ -62,14 +62,14 @@ via input files -- a bottle is given as an example in
 
 Examples on how to run the binary:
 - `./heat`  (no arguments - the program will run with the default arguments:
-             256x256 grid and 500 time steps)
+             2000x2000 grid and 500 time steps)
 - `./heat bottle.dat` (one argument - start from a temperature grid provided
                        in the file `bottle.dat` for the default number of time
                        steps)
 - `./heat bottle.dat 1000` (two arguments - will run the program starting from
                             a temperature grid provided in the file
                             `bottle.dat` for 1000 time steps)
-- `./heat 1024 2048 1000` (three arguments - will run the program in a
+- `./heat 4000 8000 1000` (three arguments - will run the program in a
                            1024x2048 grid for 1000 time steps)
 
 The program will produce an image (PNG) of the temperature field after every
