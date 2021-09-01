@@ -23,7 +23,7 @@ the parallelization as follows (marked with TODOs in the source code):
   1. Initialize and finalize MPI in the main routine ([cpp/main.cpp](cpp/main.cpp) or [fortran/main.F90](fortran/main.F90))
   2. Determine the number of MPI processes, rank, as well as the left and right neighbours
      of a domain in the routine `parallel_setup()` (in [fortran/heat_mod.F90](fortran/heat_mod.F90)) or in the `ParallelData()` constructor (in [cpp/heat.hpp](cpp/heat.hpp)
-  3. Implement the "halo exchange" operation in the `exchange()` routine in
-[cpp/core.cpp](cpp/core.cpp) or [fortran/core.F90](fortran/core.F90). 
+  3. Use `MPI_Send` and `MPI_Recv` for implementing the "halo exchange" operation in the 
+     `exchange()` routine in [cpp/core.cpp](cpp/core.cpp) or [fortran/core.F90](fortran/core.F90). 
 
 To build the code, please use the provided `Makefile` (by typing `make`).
