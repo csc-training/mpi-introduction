@@ -6,7 +6,7 @@
 #include "heat.hpp"
 
 // Calculate average temperature
-double average(const Field& field)
+double average(const Field& field, const ParallelData parallel)
 {
      double local_average = 0.0;
      double average = 0.0;
