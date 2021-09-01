@@ -1,14 +1,23 @@
 ifeq ($(COMP),)
-COMP=gnu
+COMP=intel
 endif
 
 COMMONDIR=../../common
 
+ifeq ($(COMP),intel)
+FC=mpif90
+CC=icc
+FCFLAGS=-O2 -xHost
+CCFLAGS=-O2 -xHost -I$(COMMONDIR)
+LDFLAGS=
+LIBS=-lpng
+endif
+
 ifeq ($(COMP),gnu)
 FC=mpif90
 CC=gcc
-FCFLAGS=-O3 -Wall 
-CCFLAGS=-O3 -Wall -I$(COMMONDIR)
+FCFLAGS=-O3 -Wall -march=native
+CCFLAGS=-O3 -Wall -march=native -I$(COMMONDIR)
 LDFLAGS=
 LIBS=-lpng
 endif
