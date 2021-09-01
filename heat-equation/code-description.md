@@ -8,7 +8,7 @@ describes the variation of temperature in a given region over time
 <!-- Equation
 \frac{\partial u}{\partial t} = \alpha \nabla^2 u
 -->
-![img](http://quicklatex.com/cache3/d2/ql_b3f6b8bdc3a8862c73c5a97862afb9d2_l3.png)
+![img](img/eq1.png)
 
 where *u*(*x*, *y*, *t*) is the temperature field that varies in space and
 time, and α is the thermal diffusivity constant.
@@ -22,7 +22,7 @@ discretized in a grid with finite differences as
  &+ \frac{u(i,j-1)-2u(i,j)+u(i,j+1)}{(\Delta y)^2}
 \end{align*}
 -->
-![img](http://quicklatex.com/cache3/2d/ql_59f49ed64dbbe76704e0679b8ad7c22d_l3.png)
+![img](img/eq2.png)
 
 where ∆x and ∆y are the grid spacing of the temperature grid *u*.
 
@@ -32,14 +32,14 @@ of the temperature field with explicit time evolution method:
 <!-- Equation
 u^{m+1}(i,j) = u^m(i,j) + \Delta t \alpha \nabla^2 u^m(i,j)
 -->
-![img](http://quicklatex.com/cache3/9e/ql_9eb7ce5f3d5eccd6cfc1ff5638bf199e_l3.png)
+![img](img/eq3.png)
 
 Note: The algorithm is stable only when
 
 <!-- Equation
 \Delta t < \frac{1}{2 \alpha} \frac{(\Delta x \Delta y)^2}{(\Delta x)^2 (\Delta y)^2}
 -->
-![img](http://quicklatex.com/cache3/d1/ql_0e7107049c9183d11dbb1e81174280d1_l3.png)
+![img](img/eq4.png)
 
 
 ### Code
