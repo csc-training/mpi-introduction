@@ -7,7 +7,7 @@
 #include <mpi.h>
 
 #include "heat.h"
-#include "pngwriter.h"
+
 
 #define NSTEPS 500  // Default number of iteration steps
 
@@ -79,44 +79,46 @@ void initialize(int argc, char *argv[], field *current,
  * Boundary conditions are (different) constant temperatures outside the grid */
 void generate_field(field *temperature, parallel_data *parallel)
 {
-    int i, j;
+    int ind;
     double radius;
     int dx, dy;
 
     /* Allocate the temperature array, note that
      * we have to allocate also the ghost layers */
-    temperature->data =
-        malloc_2d(temperature->nx + 2, temperature->ny + 2);
+    temperature->data = (double *) malloc((temperature->nx + 2) * (temperature->ny + 2) * sizeof(double));
 
+ 
     /* Radius of the source disc */
     radius = temperature->nx_full / 6.0;
-    for (i = 0; i < temperature->nx + 2; i++) {
-        for (j = 0; j < temperature->ny + 2; j++) {
+    for (int i = 0; i < temperature->nx + 2; i++) {
+        for (int j = 0; j < temperature->ny + 2; j++) {
+	    ind = i * (temperature->ny + 2) + j;
             /* Distance of point i, j from the origin */
             dx = i + parallel->rank * temperature->nx -
                  temperature->nx_full / 2 + 1;
             dy = j - temperature->ny / 2 + 1;
             if (dx * dx + dy * dy < radius * radius) {
-                temperature->data[i][j] = 5.0;
+                temperature->data[ind] = 5.0;
             } else {
-                temperature->data[i][j] = 65.0;
+                temperature->data[ind] = 65.0;
             }
         }
     }
 
     /* Boundary conditions */
-    for (i = 0; i < temperature->nx + 2; i++) {
-        temperature->data[i][0] = 20.0;
-        temperature->data[i][temperature->ny + 1] = 70.0;
+    for (int i = 0; i < temperature->nx + 2; i++) {
+        temperature->data[i * (temperature->ny + 2)] = 20.0;
+        temperature->data[i * (temperature->ny + 2) + temperature->ny + 1] = 70.0;
     }
 
     if (parallel->rank == 0) {
-        for (j = 0; j < temperature->ny + 2; j++) {
-            temperature->data[0][j] = 85.0;
+        for (int j = 0; j < temperature->ny + 2; j++) {
+            temperature->data[j] = 85.0;
         }
-    } else if (parallel->rank == parallel->size - 1) {
-        for (j = 0; j < temperature->ny + 2; j++) {
-            temperature->data[temperature->nx + 1][j] = 5.0;
+    } 
+    if (parallel->rank == parallel->size - 1) {
+        for (int j = 0; j < temperature->ny + 2; j++) {
+            temperature->data[(temperature->nx + 1) * (temperature->ny + 2) + j] = 5.0;
         }
     }
 }
@@ -165,13 +167,14 @@ void parallel_set_dimensions(parallel_data *parallel, int nx, int ny)
         printf("Cannot divide grid evenly to processors\n");
         MPI_Abort(MPI_COMM_WORLD, -2);
     }
+
 }
 
 
 /* Deallocate the 2D arrays of temperature fields */
 void finalize(field *temperature1, field *temperature2)
 {
-    free_2d(temperature1->data);
-    free_2d(temperature2->data);
+    free(temperature1->data);
+    free(temperature2->data); 
 }
 

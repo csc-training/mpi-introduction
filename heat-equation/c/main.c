@@ -8,7 +8,6 @@
 
 #include "heat.h"
 
-
 int main(int argc, char **argv)
 {
     double a = 0.5;             //!< Diffusion constant
@@ -17,24 +16,31 @@ int main(int argc, char **argv)
     double dt;                  //!< Time step
     int nsteps;                 //!< Number of time steps
 
-    int image_interval = 500;    //!< Image output interval
+    int image_interval = 1500;    //!< Image output interval
 
     parallel_data parallelization; //!< Parallelization info
 
-    int iter;                   //!< Iteration counter
+    double dx2, dy2;            //!< Delta x and y squared
 
-    double dx2, dy2;            //!< delta x and y squared
+    double average_temp;        //!< Average temperature
 
-    double start_clock;        //!< Time stamps
+    double start_clock, stop_clock;  //!< Time stamps
 
-    /* TODO start: initialize MPI */
 
-    /* TODO end */
+  // TODO start: initialize MPI
+
+  // TODO end
 
     initialize(argc, argv, &current, &previous, &nsteps, &parallelization);
 
     /* Output the initial field */
     write_field(&current, 0, &parallelization);
+
+    average_temp = average(&current);
+    if (parallelization.rank == 0) {
+        printf("Average temperature at start: %f\n", average_temp);
+    }    
+
 
     /* Largest stable time step */
     dx2 = current.dx * current.dx;
@@ -45,7 +51,7 @@ int main(int argc, char **argv)
     start_clock = MPI_Wtime();
 
     /* Time evolve */
-    for (iter = 1; iter < nsteps; iter++) {
+    for (int iter = 1; iter <= nsteps; iter++) {
         exchange(&previous, &parallelization);
         evolve(&current, &previous, a, dt);
         if (iter % image_interval == 0) {
@@ -56,17 +62,28 @@ int main(int argc, char **argv)
         swap_fields(&current, &previous);
     }
 
+    stop_clock = MPI_Wtime();
+
+    /* Average temperature for reference */
+    average_temp = average(&previous);
+
     /* Determine the CPU time used for the iteration */
     if (parallelization.rank == 0) {
-        printf("Iteration took %.3f seconds.\n", (MPI_Wtime() - start_clock));
-        printf("Reference value at 5,5: %f\n", previous.data[5][5]);
+        printf("Iteration took %.3f seconds.\n", (stop_clock - start_clock));
+        printf("Average temperature: %f\n", average_temp);
+        if (argc == 1) {
+            printf("Reference value with default arguments: 59.281239\n");
+        }
     }
+
+    /* Output the final field */
+    write_field(&previous, nsteps, &parallelization);
 
     finalize(&current, &previous);
 
-    /* TODO start: finalize MPI */
+  // TODO start: finalize MPI
 
-    /* TODO end */
+  // TODO end
 
     return 0;
 }

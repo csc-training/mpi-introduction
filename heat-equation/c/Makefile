@@ -1,8 +1,15 @@
 ifeq ($(COMP),)
-COMP=gnu
+COMP=intel
 endif
 
 COMMONDIR=../common
+
+ifeq ($(COMP),intel)
+CC=mpicc
+CCFLAGS=-O3 -I$(COMMONDIR)
+LDFLAGS=
+LIBS=-lpng
+endif
 
 ifeq ($(COMP),gnu)
 CC=mpicc
