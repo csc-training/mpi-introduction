@@ -98,7 +98,8 @@ contains
     ! Boundary conditions
     if (parallel % rank == 0) then
        field0%data(:,0) = 20.0_dp
-    else if (parallel % rank == parallel%size - 1) then
+    end if
+    if (parallel % rank == parallel%size - 1) then
        field0%data(:,field0%ny+1) = 70.0_dp
     end if
     field0%data(0,:) = 85.0_dp

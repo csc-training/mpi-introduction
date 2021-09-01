@@ -64,7 +64,7 @@ program heat_solve
   stop = mpi_wtime()
 
   ! Average temperature for reference
-  average_temp = average(current, parallelization)
+  average_temp = average(previous, parallelization)
 
   if (parallelization % rank == 0) then
      write(*,'(A,F7.3,A)') 'Iteration took ', stop - start, ' seconds.'

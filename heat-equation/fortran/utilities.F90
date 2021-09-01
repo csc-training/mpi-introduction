@@ -50,6 +50,8 @@ contains
 
     to_field%nx = from_field%nx
     to_field%ny = from_field%ny
+    to_field%nx_full = from_field%nx_full
+    to_field%ny_full = from_field%ny_full
     to_field%dx = from_field%dx
     to_field%dy = from_field%dy
   end subroutine copy_fields
