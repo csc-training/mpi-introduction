@@ -59,7 +59,10 @@ contains
     integer :: ny_local
     integer :: ierr
 
-    call mpi_comm_size(MPI_COMM_WORLD, parallel%size, ierr)
+! TODO start: query number of MPI tasks and store it in
+! parallel%size
+
+! TODO end
 
     if (present(ny)) then
        ny_local = ny / parallel%size
@@ -69,17 +72,15 @@ contains
        end if
     end if
 
-    call mpi_comm_rank(MPI_COMM_WORLD, parallel%rank, ierr)
+! TODO start: query MPI rank of this task and store it in parallel%rank
+! Determine also left and right neighbours of this domain and store
+! them in parallel%nleft and parallel%nright, remember to cope with
+! boundary domains appropriatly
 
-    parallel%nleft = parallel%rank - 1
-    parallel%nright = parallel%rank + 1
+    parallel%nleft = 
+    parallel%nright = 
 
-    if (parallel%nleft < 0) then
-       parallel%nleft = MPI_PROC_NULL
-    end if
-    if (parallel%nright > parallel%size - 1) then
-       parallel%nright = MPI_PROC_NULL
-    end if
+! TODO end
 
   end subroutine parallel_setup
 

@@ -15,12 +15,14 @@ program heat_solve
 
   real(dp) :: dt     ! Time step
   integer :: nsteps       ! Number of time steps
-  integer, parameter :: image_interval = 500 ! Image output interval
+  integer, parameter :: image_interval = 100 ! Image output interval
 
   type(parallel_data) :: parallelization
   integer :: ierr
 
   integer :: iter
+
+  real(dp) :: average_temp   !  Average temperature
 
   real(kind=dp) :: start, stop ! Timers
 
@@ -32,6 +34,14 @@ program heat_solve
 
   ! Draw the picture of the initial state
   call write_field(current, 0, parallelization)
+
+  average_temp = average(current, parallelization)
+  if (parallelization % rank == 0) then
+     write(*,'(A, I5, A, I5, A, I5)') 'Simulation grid: ', current%nx_full, ' x ', &
+          & current%ny_full, ' time steps: ', nsteps
+     write(*,'(A, I5)') 'MPI processes: ', parallelization%size
+     write(*,'(A,F9.6)') 'Average temperature at start: ', average_temp
+  end if
 
   ! Largest stable time step
   dt = current%dx**2 * current%dy**2 / &
@@ -53,9 +63,15 @@ program heat_solve
 
   stop = mpi_wtime()
 
+  ! Average temperature for reference
+  average_temp = average(current, parallelization)
+
   if (parallelization % rank == 0) then
      write(*,'(A,F7.3,A)') 'Iteration took ', stop - start, ' seconds.'
-     write(*,'(A,G0)') 'Reference value at 5,5: ', previous % data(5,5)
+     write(*,'(A,F9.6)') 'Average temperature: ',  average_temp
+     if (command_argument_count() == 0) then
+         write(*,'(A,F9.6)') 'Reference value with default arguments: ', 59.281239
+     end if
   end if
 
   call finalize(current, previous)

@@ -1,5 +1,5 @@
 ! Utility routines for heat equation solver
-!   NOTE: This file does not need to be edited!
+
 module utilities
   use heat
 
@@ -53,5 +53,36 @@ contains
     to_field%dx = from_field%dx
     to_field%dy = from_field%dy
   end subroutine copy_fields
+
+  function average(field0, parallelization)
+    use mpi_f08
+
+    implicit none
+
+    real(dp) :: average
+    type(field) :: field0
+    type(parallel_data), intent(in) :: parallelization
+
+    real(dp) :: local_average
+    integer :: i
+    integer :: rc
+
+    local_average = sum(field0%data(1:field0%nx, 1:field0%ny))
+    ! Reduction is implemented here with point-to-point routines, any real code
+    ! should use collective call
+    if (parallelization%rank == 0) then
+        average = local_average
+        do i=1, parallelization%size-1
+            call mpi_recv(local_average, 1, MPI_DOUBLE_PRECISION, i, 11, &
+               &       MPI_COMM_WORLD, MPI_STATUS_IGNORE, rc)
+            average = average + local_average
+        end do
+        average = average / (field0%nx_full * field0%ny_full)
+    else
+        call mpi_send(local_average, 1, MPI_DOUBLE_PRECISION, 0, 11, &
+               &       MPI_COMM_WORLD, rc)
+    end if
+
+  end function average
 
 end module utilities
