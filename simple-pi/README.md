@@ -10,8 +10,8 @@ expression
 -->
 ![img](img/eq1.png)
 
-where the answer becomes more accurate with increasing $N$. As each term is independent,
-the summation over $i$ can be parallelized nearly trivially.
+where the answer becomes more accurate with increasing N. As each term is independent,
+the summation over i can be parallelized nearly trivially.
 
 Starting from the serial code [pi.cpp](pi.cpp) (or [pi.F90](pi.F90) for Fortran), make a version
 that performs the calculation parallel with **two** processes.
