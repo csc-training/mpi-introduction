@@ -1,5 +1,6 @@
 ! Field metadata for heat equation solver
 module heat
+  use mpi_f08
   use iso_fortran_env, only : REAL64
   implicit none
 
@@ -49,7 +50,6 @@ contains
   end subroutine set_field_dimensions
 
   subroutine parallel_setup(parallel, nx, ny)
-    use mpi
 
     implicit none
 

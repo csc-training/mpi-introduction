@@ -57,7 +57,6 @@ contains
   end subroutine copy_fields
 
   function average(field0, parallelization)
-    use mpi_f08
 
     implicit none
 

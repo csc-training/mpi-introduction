@@ -67,7 +67,6 @@ contains
   ! of nx_full / 6 in the center of the grid.
   ! Boundary conditions are (different) constant temperatures outside the grid
   subroutine generate_field(field0, parallel)
-    use heat
 
     implicit none
 
@@ -112,7 +111,6 @@ contains
   ! Arguments:
   !   field0 (type(field)): field variable to be cleared
   subroutine finalize(field0, field1)
-    use heat
 
     implicit none
 

@@ -6,7 +6,6 @@ program heat_solve
   use io
   use setup
   use utilities
-  use mpi
 
   implicit none
 

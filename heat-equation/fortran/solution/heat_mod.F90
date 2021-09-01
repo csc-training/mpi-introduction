@@ -1,6 +1,8 @@
 ! Field metadata for heat equation solver
 module heat
+  use mpi_f08
   use iso_fortran_env, only : REAL64
+
   implicit none
 
   integer, parameter :: dp = REAL64
