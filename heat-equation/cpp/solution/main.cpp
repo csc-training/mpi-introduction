@@ -23,7 +23,7 @@ int main(int argc, char **argv)
     // Output the initial field
     write_field(current, 0, parallelization);
 
-    auto average_temp = average(current);
+    auto average_temp = average(current, parallelization);
     if (0 == parallelization.rank) {
         std::cout << "Simulation parameters: " 
                   << "rows: " << current.nx_full << " columns: " << current.ny_full
@@ -58,7 +58,7 @@ int main(int argc, char **argv)
     auto stop_clock = MPI_Wtime();
 
     // Average temperature for reference 
-    average_temp = average(previous);
+    average_temp = average(previous, parallelization);
 
     if (0 == parallelization.rank) {
         std::cout << "Iteration took " << (stop_clock - start_clock)

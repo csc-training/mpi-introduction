@@ -66,4 +66,4 @@ void write_field(const Field& field, const int iter, const ParallelData parallel
 void read_field(Field& field, std::string filename,
                 const ParallelData parallel);
 
-double average(const Field& field);
+double average(const Field& field, const ParallelData parallel);
