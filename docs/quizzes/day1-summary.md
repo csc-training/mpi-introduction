@@ -3,20 +3,23 @@
 
 1. What is MPI?
 
-(A.) the Messagee Passing intertace
+A. the Messagee Passing intertace
 B. the Miami Police Investigators
 C. the Minimal Polynomial instantiation
 D. the Millipede Podiatry institution
-(E.) a way of doing distributed memory parallel programming
+E. a way of doing distributed memory parallel programming
+
+Correct: A, E
 
 2. To compile and run an MPl program requires
 
 A. special compilers
-(B.) special libraries
-C.  a special parallel computer
+B. special libraries
+C. a special parallel computer
 D. a special operating system
-(E.) a launcher program and runtime system
+E. a launcher program and runtime system
 
+Correct: B, E
 
  MPI is a library and therefore requires no special compiler support:
  MPI “compilers“ such as mpicc/mpif90 are just convenient wrappers
@@ -30,8 +33,10 @@ D. a special operating system
 
 A. create the 4 parallel processes
 B. start program execution
-(C.) enable the 4 independent programs subsequently to communicate with each other
+C. enable the 4 independent programs subsequently to communicate with each other
 D. create the 4 parallel threads
+
+Correct: C
 
 The standard MPl launchers (mpiexec, mpirun, srun, aprun etc.) create
 multiple copies of your MPI executable, each being a separate OS
@@ -43,10 +48,12 @@ any user-initiated communications.
 4. If you call MPI_Recv and there is no incoming message, what happens?
 
 A. the Recv fails with an error
-B.  the Recv reports that there is no incoming message
-(C). the Recv waits until a message arrives (potentially waiting forever)
+B. the Recv reports that there is no incoming message
+C. the Recv waits until a message arrives (potentially waiting forever)
 D. the Recv times out after some system specified delay (e.g. a few
 minutes)
+
+Correct: C
 
 MPI is not fault tolerant and assumes all processes are alive all the
 time. There are therefore no timeouts in MPI. The assumption is that
@@ -59,11 +66,13 @@ forever.
    
 A. the message disappears 
 B. the send fails with an error
-(C.) the send waits until a receive is posted (potentially waiting forever)
-(D.) the message is stored and delivered later on (if possible)
+C. the send waits until a receive is posted (potentially waiting forever)
+D. the message is stored and delivered later on (if possible)
 E. the send times out after some system pecified delay (e.g. a few minutes)
-(F.) the program continues execution regardless of whether the message
+F. the program continues execution regardless of whether the message
 is received 
+
+Correct: C, F
 
 MPI_Send is blocking, so its completion *may* depend on the matching
 receive. In practice, MPI will try to buffer small messages but,
@@ -74,11 +83,14 @@ change depending on how many processes you are running on) so you must
 always handle the case that MPI_Send might be synchronous (or use
 other MPI calls which will be discussed later on).
 
-6. The MPI receive routine has a parameter "count". What does this mean? .
+6. The MPI receive routine has a parameter "count". What does this mean?
+
 A. the size of the incoming message (in bytes)
 B. the size of the incoming message (in items, e.g. integers)
 C. the size of the buffer you have reserved tor storing the message in bytes
-(D.) the size of the buffer you have reserved for storing the message in items (e.g integers)
+D. the size of the buffer you have reserved for storing the message in items (e.g integers)
+
+Correct: D
 
 MPI tries to avoid talking about bytes - counting is almost always
 done in number or items. For the receive, count is the size of the
@@ -87,10 +99,12 @@ course in some programs they may be the same.
 
 7. What happens if the incoming message is larger than “count"
 
-(A.) the receive dails with an error
+A. the receive fails with an error
 B. the receive reports zero data received
 C. the message writes beyond the end or the available storage
 D. only the first "count" items are received 
+
+Correct: A
 
 MPI checks that the incoming message will fit into the supplied
 storage before receiving it. The standard behaviour on error is for
@@ -100,8 +114,10 @@ the whole MPI program to exit immediately with a fatal error
 
 A. the receive fails with an error
 B. the receive reports zero data received
-(C.) the first "n" items are received
+C. the first "n" items are received
 D. the first "n" items are received and the rest of the storage is zeroed
+
+Correct: C
 
 This is entirely legal. In simple programs (e.g regular-grid
 halo-swapping) you may know the size of all messages so #n" and
@@ -116,6 +132,8 @@ B. MPI cannot tell you
 C. it is stored in the Status parameter
 D. via the associated tag
 
+Correct: C
+
 Various pieces of metadata about the received message are stored in
 the Status such as the origin and tag (useful if you are using
 wildcarding) and its size. Unfortunately, the size is not available
@@ -129,34 +147,36 @@ printf("Welcome from rank %d\n“, rank);
 printf("Goodbye lrom rank %d\n", rank);
 ```
 
-(A.)  Welcome from rank 0
-      Welcome from rank 1
-      Welcome from rank 2
-      Goodbye from rank 0
-      Goodbye from rank 1
-      Goodbye from rank 2
-	 
-B.  Welcome from rank 2
-	Welcome from rank 1	
-	Goodbye from rank 0
-	 Goodbye from rank 1
-	 Goodbye from rank 2
-	 Welcome from rank 0
+A.  Welcome from rank 0
+    Welcome from rank 1
+    Welcome from rank 2
+    Goodbye from rank 0
+    Goodbye from rank 1
+    Goodbye from rank 2
 
-(C.)  Welcome from rank 2
+B.  Welcome from rank 2
+    Welcome from rank 1
+    Goodbye from rank 0
+    Goodbye from rank 1
+    Goodbye from rank 2
+    Welcome from rank 0
+
+C.  Welcome from rank 2
     Goodbye from rank 2
     Welcome from rank 0
     Welcome from rank 1
     Goodbye from rank 1
     Goodbye from rank 0
-	
+
 D.  Welcome from rank 0
     Goodbye from rank 1
     Welcome from rank 2
     Goodbye from rank 0
-	Welcome from rank 1
+    Welcome from rank 1
     Goodbye from rank 2
-	
+
+Correct: A, C
+
 The output from dillerenl MPI processes is interleaved in an
 unpredictable way. The order in which two print statements appear on
 the screen has, in general, nothing to do with when the priim
@@ -188,8 +208,10 @@ for (i=0; i < size; i++)
 A. The for loop ensures the operations are in order: rank 0, then rank
 1, ...
 B. The for loop ensures the operation are done in parallel across all processes
-(C.) The for loop is entirely redundant
+C. The for loop is entirely redundant
 D. The final value of j will be equal to 10*(size-1)
+
+Correct: C
 
  Remember that every MPI process is executing the entire piece of code
  so each process only ever executes the if statement once when `rank ==
