@@ -26,4 +26,5 @@ the parallelization as follows (marked with TODOs in the source code):
   3. Use `MPI_Send` and `MPI_Recv` for implementing the "halo exchange" operation in the 
      `exchange()` routine in [cpp/core.cpp](cpp/core.cpp) or [fortran/core.F90](fortran/core.F90). 
 
-To build the code, please use the provided `Makefile` (by typing `make`).
+To build the code, please use the provided `Makefile` (by typing `make`). By default, Intel 
+compiler is used, in order to use gcc type `make COMP=gnu`.
