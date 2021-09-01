@@ -20,7 +20,7 @@ A. for(i=0;i<N;i++){a+=A[i];}
 B. for(i=0;i<N;i++){A[i]+=A[i-1]+A[i+1];}
 C. for(i=0;i<N;i++){C[i]=A[i]+B[i];}
 
-APQ4. Which one is your favourite programming language?
+APQ4. What is your favourite programming language?
 
 A. C/C++
 B. FORTRAN
@@ -47,4 +47,4 @@ APQ6. What is your experience in NIX?
 A. Creating my own versions of NIX
 B. No problem installing  from command line
 C. I  can log in
-D. What is *NIX?
+D. What is NIX?
