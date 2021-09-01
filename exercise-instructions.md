@@ -18,7 +18,7 @@ If you have a GitHub account you can also **Fork** this repository and clone the
 
 ### Computing servers
 
-Exercises can be carried out using the CSC's Puhti supercomputer. See [here](https://docs.csc.fi/support/tutorials/puhti_quick/) 
+Exercises can be carried out using the CSC's Puhti supercomputer. See [CSC User Documentation](https://docs.csc.fi/support/tutorials/puhti_quick/) 
 for general instructions on using Puhti.
 
 In case you have working parallel program development environment in your
@@ -69,7 +69,7 @@ mpicxx -o my_mpi_exe test.cpp
 ```
 or
 ```
-mpic -o my_mpi_exe test.c
+mpicc -o my_mpi_exe test.c
 ```
 
 The wrapper commands include automatically all the flags needed for building
@@ -202,7 +202,7 @@ the experiment directory (e.g. `scorep_my_mpi_app_8_trace`). For smoother GUI
 performance, we recommend using [NoMachine remote desktop](https://docs.csc.fi/support/tutorials/nomachine-usage/) 
 to connect to Puhti.
 
-
+More information about Scalasca can be found in [CSC User Documentation](https://docs.csc.fi/apps/scalasca/)
 
 
 
