@@ -7,7 +7,7 @@
 Questions can be copy-pasted e.g. to HackMD.
 
 
-1. Who can boundary MPI tasks *e.g.* in communication chain be treated?
+1. How can boundary MPI tasks *e.g.* in communication chain be treated?
 
    A. Using `MPI_PROC_NULL`
    B. Using `MPI_ANY_SOURCE`
