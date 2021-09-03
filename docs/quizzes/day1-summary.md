@@ -8,48 +8,48 @@ Questions can be copy-pasted e.g. to HackMd.
 
 1. What is MPI?
 
-A. the Message Passing interface
-B. the Miami Police Investigators
-C. the Minimal Polynomial instantiation
-D. the Millipede Podiatry institution
-E. a way of doing distributed memory parallel programming
+   A. the Message Passing interface
+   B. the Miami Police Investigators
+   C. the Minimal Polynomial instantiation
+   D. the Millipede Podiatry institution
+   E. a way of doing distributed memory parallel programming
 
-A.
-B.
-C.
-D.
-E.
+   A.
+   B.
+   C.
+   D.
+   E.
 
 
 Correct: A, E
 
 2. How is a parallel MPI program executed?
 
-A. As a set of identical, independent processes
-B. Program starts serially, and then spawns and closes threads
-C. My MPI programs just crash :-(
-D. Each MPI task runs different program with different source code
+   A. As a set of identical, independent processes
+   B. Program starts serially, and then spawns and closes threads
+   C. My MPI programs just crash :-(
+   D. Each MPI task runs different program with different source code
 
-A.
-B.
-C.
-D.
+   A.
+   B.
+   C.
+   D.
 
 Correct: A (even though in MPMD model D is also possible)
 
 3. To compile and run an MPI program requires
 
-A. special compilers
-B. special libraries
-C. a special parallel computer
-D. a special operating system
-E. a launcher program and runtime system
+   A. special compilers
+   B. special libraries
+   C. a special parallel computer
+   D. a special operating system
+   E. a launcher program and runtime system
 
-A.
-B.
-C.
-D.
-E.
+   A.
+   B.
+   C.
+   D.
+   E.
 
 
 Correct: B, E
@@ -64,15 +64,15 @@ Correct: B, E
 4. After initiating an MPI program with "mpiexec -n 4
 ./my_mpi-program", what does the call to MPI_Init() do?
 
-A. create the 4 parallel processes
-B. start program execution
-C. enable the 4 independent programs subsequently to communicate with each other
-D. create the 4 parallel threads
+   A. create the 4 parallel processes
+   B. start program execution
+   C. enable the 4 independent programs subsequently to communicate with each other
+   D. create the 4 parallel threads
 
-A.
-B.
-C.
-D.
+   A.
+   B.
+   C.
+   D.
 
 
 Correct: C
@@ -86,16 +86,16 @@ any user-initiated communications.
 
 5. If you call MPI_Recv and there is no incoming message, what happens?
 
-A. the Recv fails with an error
-B. the Recv reports that there is no incoming message
-C. the Recv waits until a message arrives (potentially waiting forever)
-D. the Recv times out after some system specified delay (e.g. a few
+   A. the Recv fails with an error
+   B. the Recv reports that there is no incoming message
+   C. the Recv waits until a message arrives (potentially waiting forever)
+   D. the Recv times out after some system specified delay (e.g. a few
 minutes)
 
-A.
-B.
-C.
-D.
+   A.
+   B.
+   C.
+   D.
 
 
 Correct: C
@@ -110,19 +110,19 @@ forever.
    following are possible outcomes? 
    
 A. the message disappears 
-B. the send fails with an error
-C. the send waits until a receive is posted (potentially waiting forever)
-D. the message is stored and delivered later on (if possible)
-E. the send times out after some system specified delay (e.g. a few minutes)
-F. the program continues execution regardless of whether the message
+   B. the send fails with an error
+   C. the send waits until a receive is posted (potentially waiting forever)
+   D. the message is stored and delivered later on (if possible)
+   E. the send times out after some system specified delay (e.g. a few minutes)
+   F. the program continues execution regardless of whether the message
 is received 
 
-A.
-B.
-C.
-D.
-E.
-F.
+   A.
+   B.
+   C.
+   D.
+   E.
+   F.
 
 Correct: C, D
 
@@ -137,15 +137,15 @@ other MPI calls which will be discussed later on).
 
 7. The MPI receive routine has a parameter "count". What does this mean?
 
-A. the size of the incoming message (in bytes)
-B. the size of the incoming message (in items, e.g. integers)
-C. the size of the buffer you have reserved tor storing the message in bytes
-D. the size of the buffer you have reserved for storing the message in items (e.g integers)
+   A. the size of the incoming message (in bytes)
+   B. the size of the incoming message (in items, e.g. integers)
+   C. the size of the buffer you have reserved tor storing the message in bytes
+   D. the size of the buffer you have reserved for storing the message in items (e.g integers)
 
-A.
-B.
-C.
-D.
+   A.
+   B.
+   C.
+   D.
 
 
 Correct: D
@@ -157,15 +157,15 @@ course in some programs they may be the same.
 
 8. What happens if the incoming message is larger than “count"
 
-A. the receive fails with an error
-B. the receive reports zero data received
-C. the message writes beyond the end or the available storage
-D. only the first "count" items are received 
+   A. the receive fails with an error
+   B. the receive reports zero data received
+   C. the message writes beyond the end or the available storage
+   D. only the first "count" items are received 
 
-A.
-B.
-C.
-D.
+   A.
+   B.
+   C.
+   D.
 
 Correct: A
 
@@ -175,15 +175,15 @@ the whole MPI program to exit immediately with a fatal error
 
 9. What happens if the incoming message (of size "n") is smaller than "count"
 
-A. the receive fails with an error
-B. the receive reports zero data received
-C. the first "n" items are received
-D. the first "n" items are received and the rest of the storage is zeroed
+   A. the receive fails with an error
+   B. the receive reports zero data received
+   C. the first "n" items are received
+   D. the first "n" items are received and the rest of the storage is zeroed
 
-A.
-B.
-C.
-D.
+   A.
+   B.
+   C.
+   D.
 
 
 Correct: C
@@ -196,15 +196,15 @@ sent so you must ensure that you have enough storage locally
 
 10. How is the actual size of the incoming message reported?
 
-A. the value of "count" in the receive is updated.
-B. MPI cannot tell you
-C. it is stored in the Status parameter
-D. via the associated tag
+   A. the value of "count" in the receive is updated.
+   B. MPI cannot tell you
+   C. it is stored in the Status parameter
+   D. via the associated tag
 
-A.
-B.
-C.
-D.
+   A.
+   B.
+   C.
+   D.
 
 
 Correct: C
@@ -222,39 +222,47 @@ printf("Welcome from rank %d\n“, rank);
 printf("Goodbye from rank %d\n", rank);
 ```
 
-A.  Welcome from rank 0
+   A.  
+    ```
+    Welcome from rank 0
     Welcome from rank 1
     Welcome from rank 2
     Goodbye from rank 0
     Goodbye from rank 1
     Goodbye from rank 2
-
-B.  Welcome from rank 2
+	```
+   B. 
+    ```
+	Welcome from rank 2
     Welcome from rank 1
     Goodbye from rank 0
     Goodbye from rank 1
     Goodbye from rank 2
     Welcome from rank 0
-
-C.  Welcome from rank 2
+	```
+   C.  
+    ```
+	Welcome from rank 2
     Goodbye from rank 2
     Welcome from rank 0
     Welcome from rank 1
     Goodbye from rank 1
     Goodbye from rank 0
-
-D.  Welcome from rank 0
+	```
+   D.  
+    ```
+	Welcome from rank 0
     Goodbye from rank 1
     Welcome from rank 2
     Goodbye from rank 0
     Welcome from rank 1
     Goodbye from rank 2
+	```
 
-
-A.
-B.
-C.
-D.
+   A.
+   B.
+   C.
+   D.
 
 
 Correct: A, C
@@ -287,16 +295,16 @@ for (i=0; i < size; i++)
  }
 ```
 
-A. The for loop ensures the operations are in order: rank 0, then rank
+   A. The for loop ensures the operations are in order: rank 0, then rank
 1, ...
-B. The for loop ensures the operation are done in parallel across all processes
-C. The for loop is entirely redundant
-D. The final value of j will be equal to 10*(size-1)
+   B. The for loop ensures the operation are done in parallel across all processes
+   C. The for loop is entirely redundant
+   D. The final value of j will be equal to 10*(size-1)
 
-A.
-B.
-C.
-D.
+   A.
+   B.
+   C.
+   D.
 
 
 Correct: C
