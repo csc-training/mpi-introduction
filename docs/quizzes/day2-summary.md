@@ -29,15 +29,15 @@ even more convenient in most cases but not discussed in this course).
 
 2. Which of the following statements apply to `MPI_Sendrecv`?
 
-  A. It is required for correct functioning of MPI programs
-  B. It is syntactic sugar in MPI
-  C. It is useful preventing deadlocks
-  D. It is useful for avoiding serialization of communication
+   A. It is required for correct functioning of MPI programs
+   B. It is syntactic sugar in MPI
+   C. It is useful preventing deadlocks
+   D. It is useful for avoiding serialization of communication
 
-  A.
-  B.
-  C.
-  D.
+   A.
+   B.
+   C.
+   D.
 
 Correct: C, D
 
@@ -48,16 +48,16 @@ performance.
 3. Which of the following statements about Collective communication
    are correct?
 
-  A. All the processes participate in pairwise communication
-  B. Every process sends a message to a specific process
-  C. All the MPI tasks within a communicator communicate along
-     the chosen pattern
-  D. Every process receives messages from every other process
+   A. All the processes participate in pairwise communication
+   B. Every process sends a message to a specific process
+   C. All the MPI tasks within a communicator communicate along
+      the chosen pattern
+   D. Every process receives messages from every other process
   
-  A.
-  B.
-  C.
-  D.
+   A.
+   B.
+   C.
+   D.
 
 Correct: C
 
@@ -66,15 +66,15 @@ but are not true for collective communication in general
 
 4. The benefits of collective communication are
 
-  A. There is no benefit
-  B. Code is more compact
-  C. MPI library can utilize special hardware
-  D. MPI library can utilize efficient implementations
+   A. There is no benefit
+   B. Code is more compact
+   C. MPI library can utilize special hardware
+   D. MPI library can utilize efficient implementations
   
-  A.
-  B.
-  C.
-  D.
+   A.
+   B.
+   C.
+   D.
 
 Correct: B, C, D
 
@@ -94,15 +94,15 @@ MPI.
    if (my_id==3) print *, aloc(:)
    ```
 
-  A. "0 1 2 3"
-  B. "2 2 2 2 2 2 2 2"
-  C. "0 0 1 1 2 2 3 3"
-  D. "0 1 2 3 0 1 2 3"
+   A. "0 1 2 3"
+   B. "2 2 2 2 2 2 2 2"
+   C. "0 0 1 1 2 2 3 3"
+   D. "0 1 2 3 0 1 2 3"
   
-  A.
-  B.
-  C.
-  D.
+   A.
+   B.
+   C.
+   D.
 
 Correct: C
   
@@ -113,20 +113,20 @@ Correct: C
       MPI_Allreduce(&rank, &evensum, 1, MPI_INT, MPI_SUM, MPI_COMM_WORLD);
       if (0 == rank) printf("evensum = %d\n", evensum);
    } else { // odd processes
-         MPI_Allreduce(&rank, &oddsum, 1, MPI_INT, MPI_SUM, MPI_COMM_WORLD);
-         if (1 == rank) printf("oddsum = %d\n", oddsum);
+      MPI_Allreduce(&rank, &oddsum, 1, MPI_INT, MPI_SUM, MPI_COMM_WORLD);
+      if (1 == rank) printf("oddsum = %d\n", oddsum);
    }
    ```
    
-  A. evensum = 16, oddsum = 12
-  B. evensum = 28, oddsum = 28
-  C. evensum = 12, oddsum = 16
-  D. evensum = 6, oddsum = 2
+   A. evensum = 16, oddsum = 12
+   B. evensum = 28, oddsum = 28
+   C. evensum = 12, oddsum = 16
+   D. evensum = 6, oddsum = 2
 
-  A.
-  B.
-  C.
-  D.
+   A.
+   B.
+   C.
+   D.
 
 Correct: B
 
@@ -150,18 +150,18 @@ into two sub-communicators, one for even ranks and the other for odd,
 and call then reduction on this subcommunicaior.
 	
   
-7.  Which of the following statements apply to non-blocking communication?
+7. Which of the following statements apply to non-blocking communication?
 	
-  A. Communication happens in the background during computation
-  B. Latency is smaller and bandwidth better than with blocking
-  routines
-  C. There is possibility for overlapping communication and computation
-  D. Non-blocking routines can have a small performance penalty
+   A. Communication happens in the background during computation
+   B. Latency is smaller and bandwidth better than with blocking
+   routines
+   C. There is possibility for overlapping communication and computation
+   D. Non-blocking routines can have a small performance penalty
   
-  A.
-  B.
-  C.
-  D.
+   A.
+   B.
+   C.
+   D.
 
 Correct: C, D
 
@@ -189,15 +189,15 @@ achieve higher aggregate bandwidth.
   }
   ```
   
-  A. 4
-  B. 6
-  C. Segmentation fault
-  D. Not well defined
+   A. 4
+   B. 6
+   C. Segmentation fault
+   D. Not well defined
 
-  A.
-  B.
-  C.
-  D.
+   A.
+   B.
+   C.
+   D.
 
 
 Correct: D
