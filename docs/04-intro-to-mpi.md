@@ -17,6 +17,7 @@ lang:   en
 - MPI is flexible and comprehensive 
     - large (hundreds of procedures)
     - concise (only 10-20 procedures are typically needed)
+- First version of standard (1.0) published in 1994, latest (4.0) in June 2021
 
 # Processes and threads
 
@@ -109,7 +110,7 @@ if (rank == 1) {
 - The MPI standard defines interfaces to C and Fortran programming
   languages
     - No C++ bindings in the standard, C++ programs use the C interface
-	- There are unofficial bindings to eg. Python, Perl and Java
+	- There are unofficial bindings to eg. Python, Rust, R
 - C call convention (*case sensitive*)<br>
 `rc = MPI_Xxxx(parameter,...)`
     - some arguments have to be passed as pointers
