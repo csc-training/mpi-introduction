@@ -206,13 +206,20 @@ MPI_Barrier(`comm`{.input})
 
 # Web resources 
 
-- List of MPI functions with detailed descriptions  
-<http://mpi.deino.net/mpi_functions/index.htm>
-- Good online MPI tutorials   
-    - <https://computing.llnl.gov/tutorials/mpi>  
+- List of MPI functions with detailed descriptions
+    - <http://mpi.deino.net/mpi_functions/>
+    - <https://www.rookiehpc.com/mpi/docs/>
+- Good online MPI tutorials
+    - <https://computing.llnl.gov/tutorials/mpi>
     - <http://mpitutorial.com/tutorials/>
-	- <https://www.youtube.com/watch?v=BPSgXQ9aUXY>
+    - <https://www.youtube.com/watch?v=BPSgXQ9aUXY>
+- MPI coding game in C <br>
+<https://www.codingame.com/playgrounds/47058/have-fun-with-mpi-in-c/lets-start-to-have-fun-with-mpi>
+
+# Web resources 
+
 - MPI 4.0 standard <http://www.mpi-forum.org/docs/>
-- MPI implementations   
-	* OpenMPI <http://www.open-mpi.org/>
-    * MPICH <https://www.mpich.org/>
+- MPI implementations
+    - OpenMPI <http://www.open-mpi.org/>
+    - MPICH <https://www.mpich.org/>
+    - Intel MPI <https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/mpi-library.html>
